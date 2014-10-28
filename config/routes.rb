@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
 
     unauthenticated :user do
-      root to: "devise/sessions#new", as: :unauthenticated_root
+      root to: "home#index", as: :unauthenticated_root
     end
   end
 
