@@ -15,11 +15,11 @@
 #  last_sign_in_ip        :inet
 #  created_at             :datetime
 #  updated_at             :datetime
-#  role                   :string(255)
-#  document_id            :integer
 #  name                   :string(255)
 #  last_name              :string(255)
-#  cellphone              :integer
+#  document               :integer
+#  phone                  :string(255)
+#  role                   :string(255)
 #
 
 require 'test_helper'

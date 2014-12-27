@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: lease_times
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  seconds    :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  segundos: MyString
+
+two:
+  name: MyString
+  segundos: MyString

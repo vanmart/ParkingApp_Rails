@@ -15,11 +15,11 @@
 #  last_sign_in_ip        :inet
 #  created_at             :datetime
 #  updated_at             :datetime
-#  role                   :string(255)
-#  document_id            :integer
 #  name                   :string(255)
 #  last_name              :string(255)
-#  cellphone              :integer
+#  document               :integer
+#  phone                  :string(255)
+#  role                   :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -28,16 +28,34 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates_uniqueness_of :email
-  validates_presence_of :email, :role
+  has_many :parking_users
 
+  validates :name, presence: true,
+                    format: { with: /\A\S[a-zA-Z\s]*\S\z/ }
+  validates :last_name, presence: true,
+                    format: { with: /\A\S[a-zA-Z\s]*\S\z/ }
+  validates :phone, presence: true,
+                    :numericality => {:only_integer => true}
+  validates :email, presence: true,
+                    format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
+                    uniqueness: { case_sensitive: false }
+  validates :role, presence: true
+
+  before_save { email.downcase! }
+  
   before_validation(on: :create) do
     if self.role.blank?
-      self.role = "employee"
+      self.role = 'visitor'
     end
   end
 
-  ROLES = %w[admin employee]
+  def roles
+    ROLES.reject do |r|
+      ROLES.index(r)
+    end
+  end
+
+  ROLES = %w[admin parking_owner employee visitor]
 
   def role?(base_role)
     self.role == base_role.to_s
@@ -47,7 +65,11 @@ class User < ActiveRecord::Base
     ROLES
   end
 
+  
   rails_admin do
+    configure :parking_users do
+      visible false
+    end
     configure :role, :enum do
       enum_method do
         :role_enum

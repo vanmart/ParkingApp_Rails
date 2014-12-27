@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'parking_selector/index'
+
   devise_for :users
 
   devise_scope :user do

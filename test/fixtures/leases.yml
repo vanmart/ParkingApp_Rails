@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: leases
+#
+#  id              :integer          not null, primary key
+#  entry_date      :datetime
+#  exit_date       :datetime
+#  value           :float
+#  lease_type_id   :integer
+#  vehicle_plate   :string(255)
+#  parking_user_id :integer
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  entry_date: 2014-10-29 15:22:48
+  exit_date: 2014-10-29 15:22:48
+  employee_id: 1
+  lease_type_id: 1
+  vehicle_id: 1
+  vehicle_owner_id: 1
+
+two:
+  entry_date: 2014-10-29 15:22:48
+  exit_date: 2014-10-29 15:22:48
+  employee_id: 1
+  lease_type_id: 1
+  vehicle_id: 1
+  vehicle_owner_id: 1

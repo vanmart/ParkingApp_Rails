@@ -32,8 +32,8 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
-
-  config.included_models = [ 'User' ]
+  #names like are in the model class
+  config.included_models = [ 'User' , 'Vehicle' , 'VehicleType', 'Lease', 'LeaseType', 'Parking','ParkingUser','LeaseTime']
 
   RailsAdmin.config {|c| c.label_methods << :description }
 end
